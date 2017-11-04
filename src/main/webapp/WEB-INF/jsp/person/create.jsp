@@ -50,5 +50,6 @@
             <br/>
             <input type="submit" name="Submit" value="Submit"/>
         </form>
+        <form action="${pageContext.request.contextPath}"
     </body>
 </html>
