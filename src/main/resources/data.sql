@@ -25,6 +25,7 @@ INSERT INTO person (
 );
 
 INSERT INTO client (
+    client_id,
     client_name,
     client_uri,
     client_phone,
@@ -33,6 +34,7 @@ INSERT INTO client (
     client_state,
     client_zip
 ) VALUES (
+    '101010',
     'Aquent',
     'Aquent.com',
     '7812443804',

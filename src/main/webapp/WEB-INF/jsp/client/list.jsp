@@ -37,8 +37,8 @@
                     <td>${client.clientURI}</td>
                     <td>${client.clientPhone}</td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/client/edit/${person.clientId}">Edit Client</a>
-                        <a href="${pageContext.request.contextPath}/client/delete/${person.clientId}">Delete Client</a>
+                        <a href="${pageContext.request.contextPath}/client/edit/${client.clientId}">Edit Client</a>
+                        <a href="${pageContext.request.contextPath}/client/delete/${client.clientId}">Delete Client</a>
                     </td>
                 </tr>
             </c:forEach>

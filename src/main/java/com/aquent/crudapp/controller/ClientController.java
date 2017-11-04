@@ -21,8 +21,8 @@ import com.aquent.crudapp.service.ClientService;
 public class ClientController {
     public static final String COMMAND_DELETE = "Delete";
 
-    @Autowired
-    private ClientService clientService;
+
+    @Inject ClientService clientService;
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public ModelAndView list() {
