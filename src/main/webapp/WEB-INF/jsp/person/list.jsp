@@ -14,10 +14,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Person Listing</title>
+        <script src="/Scripts/jquery.js"></script>
+        <script src="/Scripts/jquery.js"></script>
     </head>
     <body>
         <h1>Person Listing</h1>     
         <p><a href="${pageContext.request.contextPath}/person/create">Create New Person</a></p>
+        <p><a href="${pageContext.request.contextPath}/client/list">View Clients</a></p>
         <c:choose>
             <c:when test="${fn:length(persons) gt 0}">
                 <table>

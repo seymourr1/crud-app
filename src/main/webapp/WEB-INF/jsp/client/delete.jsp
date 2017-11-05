@@ -13,6 +13,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Delete Client</title>
+    <script src="/Scripts/jquery.js"></script>
+    <script src="/Scripts/jquery.js"></script>
 </head>
 <body>
 <h1>Delete Client</h1>

@@ -18,6 +18,6 @@ public class HomeController {
      */
     @RequestMapping
     public String index() {
-        return "redirect:/client/list";
+        return "redirect:/person/list";
     }
 }

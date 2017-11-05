@@ -14,7 +14,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Create Person</title>
-    </head>
+        <script src="/Scripts/jquery.js"></script>
+        <script src="/Scripts/jquery.js"></script>
     <body>
         <h1>Create Person</h1>
         <c:if test="${fn:length(errors) gt 0}">

@@ -21,6 +21,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Create Client</title>
+    <script src="/Scripts/jquery.js"></script>
+    <script src="/Scripts/jquery.js"></script>
 </head>
 <body>
 <h1>Create Client</h1>
@@ -38,7 +40,7 @@
     <input type="text" name="clientName" value="${client.clientName}"/>
     <br/>
     <label for="clientURI">Client URI:</label>
-    <input type="text" name="clientURI" value="${client.clientName}"/>
+    <input type="text" name="clientURI" value="${client.clientURI}"/>
     <br/>
     <label for="clientPhone">Client Phone Number:</label>
     <input type="text" name="clientPhone" value="${client.clientPhone}"/>

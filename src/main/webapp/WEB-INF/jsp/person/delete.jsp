@@ -12,6 +12,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Delete Person</title>
+        <script src="/Scripts/jquery.js"></script>
+        <script src="/Scripts/jquery.js"></script>
     </head>
     <body>
         <h1>Delete Person</h1>

@@ -15,6 +15,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Edit Client</title>
+    <script src="/Scripts/jquery.js"></script>
+    <script src="/Scripts/jquery.js"></script>
+
 </head>
 <body>
 
@@ -34,7 +37,7 @@
     <input type="text" name="clientName" value="${client.clientName}"/>
     <br/>
     <label for="clientURI">Client URI:</label>
-    <input type="text" name="clientURI" value="${client.clientName}"/>
+    <input type="text" name="clientURI" value="${client.clientURI}"/>
     <br/>
     <label for="clientPhone">Client Phone Number:</label>
     <input type="text" name="clientPhone" value="${client.clientPhone}"/>
@@ -49,7 +52,7 @@
     <input type="text" name="clientState" value="${client.clientState}"/>
     <br/>
     <label for="clientZip">Zip Code:</label>
-    <input type="text" name="zipCode" value="${client.clientZip}"/>
+    <input type="text" name="clientZip" value="${client.clientZip}"/>
     <br/>
     <input type="submit" name="Submit" value="Submit"/>
 </form>
