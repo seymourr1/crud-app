@@ -2,10 +2,13 @@ package com.aquent.crudapp.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
+import javax.jws.WebParam;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.aquent.crudapp.domain.Person;
 import com.aquent.crudapp.service.PersonService;
+import com.aquent.crudapp.service.ClientService;
+import com.aquent.crudapp.domain.Client;
 
 /**
  * Controller for handling basic person management operations.
@@ -25,6 +30,7 @@ public class PersonController {
     public static final String COMMAND_DELETE = "Delete";
 
     @Inject private PersonService personService;
+    @Inject private ClientService clientService;
 
     /**
      * Renders the listing page.
@@ -35,6 +41,13 @@ public class PersonController {
     public ModelAndView list() {
         ModelAndView mav = new ModelAndView("person/list");
         mav.addObject("persons", personService.listPeople());
+        return mav;
+    }
+
+    @RequestMapping(value = "listParentClient/{clientId}", method = RequestMethod.GET)
+    public ModelAndView listChildPersons(@PathVariable Integer clientId){
+        ModelAndView mav = new ModelAndView("person/listParentClient");
+        mav.addObject("clients", clientService.listChildPersons(clientId));
         return mav;
     }
 
@@ -68,6 +81,7 @@ public class PersonController {
         } else {
             ModelAndView mav = new ModelAndView("person/create");
             mav.addObject("person", person);
+            mav.addObject("allClients", clientService.listClients()); //add client list so user can select a client to be associated to
             mav.addObject("errors", errors);
             return mav;
         }
@@ -81,8 +95,10 @@ public class PersonController {
      */
     @RequestMapping(value = "edit/{personId}", method = RequestMethod.GET)
     public ModelAndView edit(@PathVariable Integer personId) {
+//        List<Client> clients = clientService.listClients();
         ModelAndView mav = new ModelAndView("person/edit");
         mav.addObject("person", personService.readPerson(personId));
+        mav.addObject("allClients", clientService.listOfClients());//add client list so user can select a client to be associated to
         mav.addObject("errors", new ArrayList<String>());
         return mav;
     }

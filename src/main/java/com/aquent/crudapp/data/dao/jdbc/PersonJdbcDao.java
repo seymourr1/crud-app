@@ -24,11 +24,12 @@ public class PersonJdbcDao implements PersonDao {
     private static final String SQL_LIST_PEOPLE = "SELECT * FROM person ORDER BY first_name, last_name, person_id";
     private static final String SQL_READ_PERSON = "SELECT * FROM person WHERE person_id = :personId";
     private static final String SQL_DELETE_PERSON = "DELETE FROM person WHERE person_id = :personId";
-    private static final String SQL_UPDATE_PERSON = "UPDATE person SET (first_name, last_name, email_address, street_address, city, state, zip_code)"
-                                                  + " = (:firstName, :lastName, :emailAddress, :streetAddress, :city, :state, :zipCode)"
+    private static final String SQL_UPDATE_PERSON = "UPDATE person SET (first_name, last_name, email_address, street_address, city, state, zip_code, client_id)"
+                                                  + " = (:firstName, :lastName, :emailAddress, :streetAddress, :city, :state, :zipCode, :clientId)"
                                                   + " WHERE person_id = :personId";
     private static final String SQL_CREATE_PERSON = "INSERT INTO person (first_name, last_name, email_address, street_address, city, state, zip_code)"
                                                   + " VALUES (:firstName, :lastName, :emailAddress, :streetAddress, :city, :state, :zipCode)";
+    private static final String SQL_LIST_PEOPLE_IN_CLIENT = "SELECT * FROM person WHERE client_id = :clientId ORDER BY first_name, last_name, person_id";
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -40,6 +41,19 @@ public class PersonJdbcDao implements PersonDao {
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public List<Person> listPeople() {
         return namedParameterJdbcTemplate.getJdbcOperations().query(SQL_LIST_PEOPLE, new PersonRowMapper());
+    }
+
+    @Override
+    @Transactional (propagation = Propagation.SUPPORTS, readOnly = true)
+    public List<Person> listAllPeople(){
+        return namedParameterJdbcTemplate.query(SQL_LIST_PEOPLE, new PersonRowMapper());
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public List<Person> listPeopleInClient(Integer clientId){
+        return namedParameterJdbcTemplate.query(SQL_LIST_PEOPLE_IN_CLIENT, Collections.singletonMap("clientId", clientId), new PersonRowMapper());
+
     }
 
     @Override
@@ -77,6 +91,7 @@ public class PersonJdbcDao implements PersonDao {
         public Person mapRow(ResultSet rs, int rowNum) throws SQLException {
             Person person = new Person();
             person.setPersonId(rs.getInt("person_id"));
+            person.setClientId(rs.getInt("client_id"));
             person.setFirstName(rs.getString("first_name"));
             person.setLastName(rs.getString("last_name"));
             person.setEmailAddress(rs.getString("email_address"));

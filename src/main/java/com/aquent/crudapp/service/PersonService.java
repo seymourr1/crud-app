@@ -16,6 +16,10 @@ public interface PersonService {
      */
     List<Person> listPeople();
 
+    List<Person> listOfPeople();
+
+    List<Person> listPeopleInClient(Integer clientId);
+
     /**
      * Creates a new person record.
      *

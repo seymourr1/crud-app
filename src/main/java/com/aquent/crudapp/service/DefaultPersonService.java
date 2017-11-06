@@ -38,6 +38,12 @@ public class DefaultPersonService implements PersonService {
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public List<Person> listPeopleInClient(Integer clientId){
+        return personDao.listPeopleInClient(clientId);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public Person readPerson(Integer id) {
         return personDao.readPerson(id);
     }
@@ -58,6 +64,12 @@ public class DefaultPersonService implements PersonService {
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = false)
     public void deletePerson(Integer id) {
         personDao.deletePerson(id);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public List<Person> listOfPeople(){
+        return personDao.listAllPeople();
     }
 
     @Override

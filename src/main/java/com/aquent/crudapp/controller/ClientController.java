@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.aquent.crudapp.service.PersonService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +23,7 @@ public class ClientController {
 
 
     @Inject ClientService clientService;
+    @Inject PersonService personService;
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public ModelAndView list() {
@@ -31,6 +32,14 @@ public class ClientController {
         return mav;
     }
 
+    @RequestMapping(value = "listInClient/{clientId}", method = RequestMethod.GET)
+    public ModelAndView listPeopleInClient(@PathVariable Integer clientId){
+        ModelAndView mav = new ModelAndView("client/listChildPersons");
+        mav.addObject("persons", personService.listPeopleInClient(clientId));
+        return mav;
+    }
+//    list clients associated to a user
+
     @RequestMapping(value = "create", method = RequestMethod.GET)
     public ModelAndView create() {
         ModelAndView mav = new ModelAndView("client/create");
@@ -38,6 +47,7 @@ public class ClientController {
         mav.addObject("errors", new ArrayList<String>());
         return mav;
     }
+    //create client is given incrementing ID
 
     @RequestMapping(value = "create", method = RequestMethod.POST)
     public ModelAndView create(Client client) {
@@ -53,6 +63,7 @@ public class ClientController {
             return mav;
         }
     }
+    //show new client
 
     @RequestMapping(value = "edit/{clientId}", method = RequestMethod.GET)
     public ModelAndView edit(@PathVariable Integer clientId) {
@@ -61,6 +72,7 @@ public class ClientController {
         mav.addObject("errors", new ArrayList<String>());
         return mav;
     }
+//    edit client with validation
 
     @RequestMapping(value = "edit", method = RequestMethod.POST)
     public ModelAndView edit(Client client) {
@@ -76,6 +88,7 @@ public class ClientController {
             return mav;
         }
     }
+//    show edited client
 
     @RequestMapping(value = "delete/{clientId}", method = RequestMethod.GET)
     public ModelAndView delete(@PathVariable Integer clientId) {

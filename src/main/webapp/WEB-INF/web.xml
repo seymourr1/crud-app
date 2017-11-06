@@ -4,7 +4,10 @@
 
   <display-name>crud-app</display-name>
   <description>Aquent CRUD app</description>
-
+  <mime-mapping>
+    <extension>css</extension>
+    <mime-type>text/css</mime-type>
+  </mime-mapping>
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>/WEB-INF/application-beans.xml</param-value>

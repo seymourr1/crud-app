@@ -36,6 +36,12 @@ public class DefaultClientService implements ClientService {
 
     @Override
     @Transactional (propagation = Propagation.SUPPORTS, readOnly = true)
+    public List<Client> listChildPersons(Integer clientId) {
+        return clientDao.listChildPersons(clientId);
+    }
+
+    @Override
+    @Transactional (propagation = Propagation.SUPPORTS, readOnly = true)
     public Client readClient(Integer id) {
         return clientDao.readClient(id);
     }
@@ -56,6 +62,12 @@ public class DefaultClientService implements ClientService {
     @Transactional (propagation = Propagation.SUPPORTS, readOnly = false)
     public void deleteClient(Integer id) {
         clientDao.deleteClient(id);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public List<Client> listOfClients(){
+        return clientDao.listAllClients();
     }
 
     @Override

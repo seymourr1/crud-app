@@ -15,6 +15,10 @@ public interface PersonDao {
      */
     List<Person> listPeople();
 
+    List<Person> listPeopleInClient(Integer clientId);
+
+    List<Person> listAllPeople();
+
     /**
      * Creates a new person record.
      *

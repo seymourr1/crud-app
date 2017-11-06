@@ -18,9 +18,6 @@
     <title>Client Listing</title>
 </head>
 <style>
-    h1 {
-        color: #111; font-family: 'Helvetica Neue', sans-serif; font-size: 30px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: left;
-    }
     table {
         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
         border-collapse: collapse;
@@ -47,34 +44,29 @@
 </style>
 <body>
 <h1>Client Listing</h1>
-<p><a class="pure-button" href="${pageContext.request.contextPath}/client/create">Create New Client</a>
-    <a class="pure-button" href="${pageContext.request.contextPath}/person/list">View Persons</a></p>
+<p><a class="pure-button" href="${pageContext.request.contextPath}/person/create">Create New Person</a>
+    <a class="pure-button" href="${pageContext.request.contextPath}/person/list">Back to Person</a></p>
 <c:choose>
     <c:when test="${fn:length(clients) gt 0}">
         <table>
             <thead>
             <tr>
-                <th>Company</th>
-                <th>URL</th>
-                <th>Telephone</th>
-                <th></th>
+                <th>Company Name</th>
+                <th>URI</th>
+                <%--<th>Phone Number</th>--%>
+                <%--<th>Actions</th>--%>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${clients}" var="client">
+            <c:forEach items="${clients}" var="clients">
                 <tr>
-                    <td>${client.clientName}</td>
-                    <td>${client.clientURI}</td>
-                    <td>${client.clientPhone}</td>
-                    <td>
-                        <a href="${pageContext.request.contextPath}/client/edit/${client.clientId}">Edit Client</a>
-                        <a href="${pageContext.request.contextPath}/client/delete/${client.clientId}">Delete Client</a>
-                        <%--<a href="${pageContext.request.contextPath}/client/listInClient/${client.clientId}">Show Associated Contacts</a>--%>
-                    </td>
+                    <td>${clients.clientName}</td>
+                    <td>${clients.clientURI}</td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
+        <a href="${pageContext.request.contextPath}/client/edit/${client.clientId}"></a>
     </c:when>
     <c:otherwise>
         <p>No results found.</p>

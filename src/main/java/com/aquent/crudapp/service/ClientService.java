@@ -8,6 +8,10 @@ public interface ClientService {
 
     List<Client> listClients();
 
+    List<Client> listChildPersons(Integer clientId);
+
+    List<Client> listOfClients();
+
     Integer createClient (Client client);  //returns new client ID
 
     Client readClient(Integer id);

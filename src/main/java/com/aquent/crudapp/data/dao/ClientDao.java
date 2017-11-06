@@ -5,15 +5,17 @@ import com.aquent.crudapp.domain.Client;
 import java.util.List;
 
 public interface ClientDao {
-    List<Client> listClients();
+    List<Client> listClients(); //Display all Clients
 
-    Integer createClient(Client client);
+    List<Client> listChildPersons(Integer clientId);  //Display persons associated to a given client
 
-    Client readClient(Integer id);
+    List<Client> listAllClients(); //for choosing a client to associate to
 
-    void updateClient(Client client);
+    Integer createClient(Client client); //Create
 
-    void deleteClient(Integer id);
+    Client readClient(Integer id);  //Read
 
+    void updateClient(Client client); //Update
 
+    void deleteClient(Integer id); //Delete
 }

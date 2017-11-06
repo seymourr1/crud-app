@@ -27,6 +27,8 @@ public class ClientJdbcDao implements ClientDao {
             " WHERE client_id = :clientId";
     private static final String SQL_CREATE_CLIENT = "INSERT INTO client (client_name, client_uri, client_phone, client_street_address, client_city, client_state, client_zip)" +
             " VALUES (:clientName, :clientURI, :clientPhone, :clientStreetAddress, :clientCity, :clientState, :clientZip)";
+    private static final String SQL_LIST_CHILD_PERSONS = "SELECT * FROM client WHERE client_id = :clientId ORDER BY client_name, client_uri";  //Find persons associated to a given clientId
+
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -38,8 +40,24 @@ public class ClientJdbcDao implements ClientDao {
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public List<Client> listClients() {
-        return namedParameterJdbcTemplate.getJdbcOperations().query(SQL_LIST_CLIENT, new ClientRowMapper());
+            return namedParameterJdbcTemplate.getJdbcOperations().query(SQL_LIST_CLIENT, new ClientRowMapper());
     }
+//    list all clients
+    @Override
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public List<Client> listChildPersons(Integer clientId){
+        return namedParameterJdbcTemplate.query(SQL_LIST_CHILD_PERSONS, Collections.singletonMap("clientId", clientId), new ClientRowMapper());
+    }
+//    list persons associated to a client
+    @Override
+    @Transactional (propagation = Propagation.SUPPORTS, readOnly = true)
+    public List<Client> listAllClients(){
+        return namedParameterJdbcTemplate.query(SQL_LIST_CLIENT, new ClientRowMapper());
+    }
+//    list all clients for user to associate to
+
+
+
 
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = false)
@@ -48,19 +66,19 @@ public class ClientJdbcDao implements ClientDao {
         namedParameterJdbcTemplate.update(SQL_CREATE_CLIENT, new BeanPropertySqlParameterSource(client), keyHolder);
         return keyHolder.getKey().intValue();
     }
-
+//    create
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
     public Client readClient(Integer clientId) {
         return namedParameterJdbcTemplate.queryForObject(SQL_READ_CLIENT, Collections.singletonMap("clientId", clientId), new ClientRowMapper());
     }
-
+//    read
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = false)
     public void updateClient(Client client) {
         namedParameterJdbcTemplate.update(SQL_UPDATE_CLIENT, new BeanPropertySqlParameterSource(client));
     }
-
+//    update
     @Override
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = false)
     public void deleteClient(Integer clientId) {
@@ -68,7 +86,7 @@ public class ClientJdbcDao implements ClientDao {
     }
 
     private static final class ClientRowMapper implements RowMapper<Client> {
-
+//     takes data from SQL query and inserts into Client Object
         public Client mapRow(ResultSet rs, int rowNum) throws SQLException {
             Client client = new Client();
             client.setClientId(rs.getInt("client_id"));

@@ -12,16 +12,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Delete Person</title>
-        <script src="/Scripts/jquery.js"></script>
-        <script src="/Scripts/jquery.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
     </head>
     <body>
         <h1>Delete Person</h1>
         <p>You are about to delete the person ${person.firstName} ${person.lastName}:  Are you sure?</p>
-        <form action="${pageContext.request.contextPath}/person/delete" method="post">
+        <form class="pure-form pure-form-aligned" action="${pageContext.request.contextPath}/person/delete" method="post">
             <input type="hidden" name="personId" value="${person.personId}"/>
-            <input type="submit" name="command" value="Cancel"/>
-            <input type="submit" name="command" value="Delete"/>
+            <input type="submit" class="pure-button pure-button-primary" name="command" value="Cancel"/>
+            <input type="submit" class="pure-button pure-button-primary" name="command" value="Delete"/>
         </form>
     </body>
 </html>

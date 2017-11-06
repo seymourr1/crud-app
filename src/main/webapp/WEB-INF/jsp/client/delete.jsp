@@ -13,16 +13,15 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Delete Client</title>
-    <script src="/Scripts/jquery.js"></script>
-    <script src="/Scripts/jquery.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
 </head>
 <body>
 <h1>Delete Client</h1>
 <p>You are about to delete the Client ${client.clientName}:  Are you sure?</p>
 <form action="${pageContext.request.contextPath}/client/delete" method="post">
     <input type="hidden" name="clientId" value="${client.clientId}"/>
-    <input type="submit" name="command" value="Cancel"/>
-    <input type="submit" name="command" value="Delete"/>
+    <input type="submit" class="pure-button pure-button-primary" name="command" value="Cancel"/>
+    <input type="submit" class="pure-button pure-button-primary" name="command" value="Delete"/>
 </form>
 </body>
 </html>
